@@ -24,6 +24,6 @@ $ g++ -o collatz collatz.cpp -lgmp -O3 -I /path/to/eigen3
 
 The executable can accept the number of random starting values and the maximum starting value size, in bits:
 
-*collatz* <num values> <num bits>
+**collatz** [num values] [num bits]
 
 The defaults are "num values" = 1000000 and "num bits" = 128.
