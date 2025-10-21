@@ -3,6 +3,8 @@ Companion code to "Negative Drift and State Instability in a Bitwise System Equi
 
 This code reproduces all numerical results presented in the paper.
 
+Preprint is available here: https://zenodo.org/records/17407873
+
 # Requirements
 
 This code requires:
