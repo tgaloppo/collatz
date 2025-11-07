@@ -2,11 +2,13 @@
 Companion code to: 
 
 "Negative Drift and State Instability in a Bitwise System Equivalent to the Collatz Conjecture"
+
 Preprint is available here: https://zenodo.org/records/17407873
 
 and
 
 "Deterministic Limits and Ergodic Properties of a Bitwise Syracuse Map"
+
 Preprint is available here: https://zenodo.org/records/17552420
 
 This code reproduces all numerical results presented in the papers.
