@@ -94,11 +94,11 @@ int main(int argc, char** argv) {
   
     // find LSB, MSB and initial span
     L0 = mpz_scan1(n, 0);
-    H0 = mpz_sizeinbase(n, 2);
+    H0 = mpz_sizeinbase(n, 2) - 1;
     S0 = H0 - L0;
 
     // loop until we reach a power of 2
-    while ( mpz_popcount(n) > 1 ) {
+    while ( H0 > L0 ) {
       // 2-adic value of n
       mpz_pow_ui(nu, two, L0);
 
@@ -109,10 +109,8 @@ int main(int argc, char** argv) {
 
       // collect starting state information
       if (use_transition) {
-        mpz_tdiv_q_2exp(tmp, n, L0+1);
-        lsb0 = mpz_get_ui(tmp) & 3; // 2 bits "left of" the LSB
-        mpz_tdiv_q_2exp(tmp, n, H0-3);
-        msb0 = mpz_get_ui(tmp) & 3; // 2 bits "right of" the MSB
+        lsb0 = mpz_tstbit(n, L0+1) + 2 * mpz_tstbit(n, L0+2);
+        msb0 = mpz_tstbit(n, H0-2) + 2 * mpz_tstbit(n, H0-1);
         state0 = msb0 * 4 + lsb0;
       }
 
@@ -122,7 +120,7 @@ int main(int argc, char** argv) {
     
       // find LSB, MSB, and span of resulting number
       L1 = mpz_scan1(n, L0); // L1 must be >L0, so this safe
-      H1 = mpz_sizeinbase(n,2);
+      H1 = mpz_sizeinbase(n,2) - 1;
       S1 = H1 - L1;
 
       use_transition = use_transition && H1 - L1 >= MIN_TRANSITION_BITS;
@@ -130,10 +128,8 @@ int main(int argc, char** argv) {
       // (if applicable) collect transitioned state
       // info and record transition
       if (use_transition) {
-        mpz_tdiv_q_2exp(tmp, n, L1+1);
-        size_t lsb1 = mpz_get_ui(tmp) & 3;
-        mpz_tdiv_q_2exp(tmp, n, H1-3);
-        size_t msb1 = mpz_get_ui(tmp) & 3;
+        size_t lsb1 = mpz_tstbit(n, L1+1) + 2 * mpz_tstbit(n, L1+2);
+        size_t msb1 = mpz_tstbit(n, H1-2) + 2 * mpz_tstbit(n, H1-1);
         Mlsb[lsb0 * 4 + lsb1] += 1.0;
         Mmsb[msb0 * 4 + msb1] += 1.0;
         state1 = msb1 * 4 + lsb1;
@@ -149,19 +145,21 @@ int main(int argc, char** argv) {
       // Count total number of transitions
       count += 1;
    
-      // Update starting conditions for next iteration
-      L0 = L1;
-      H0 = H1;
+      // Update starting conditions for next iteration;
+      // for efficiency, pull LSB back to position 0
+      mpz_tdiv_q_2exp(n, n, L1);
+      L0 = 0;
+      H0 = H1 - L1;
       S0 = S1;
 
       // if we want to histogram the fractional positions
       // generated, we can use this to get the values.
       /*
-      if (mpz_popcount(n) > 1) {
+      if (H0 > L0) {
         mpq_t a;
         mpq_init(a);
         mpq_set_z(a, n);
-        mpq_div_2exp(a, a, H0);
+        mpq_div_2exp(a, a, H0+1);
         double alpha = mpq_get_d(a);
         std::cerr << alpha << std::endl;
         mpq_clear(a);
