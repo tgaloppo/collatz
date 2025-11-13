@@ -74,9 +74,8 @@ int main(int argc, char** argv) {
 
             if (variance == 0) continue; // Avoid division by zero
 
-            // Cap max_lag to a reasonable number (e.g., 3000) or half the size
-            size_t max_lag = low_bits_frac.size(); //std::min((size_t)3000, low_bits_frac.size() / 2);
-            
+            size_t max_lag = low_bits_frac.size();
+                        
             for (size_t lag = 1; lag < max_lag; lag++) {
                 double sum = 0.0;
                 for (size_t j=0; j < low_bits_frac.size() - lag; j++) {
