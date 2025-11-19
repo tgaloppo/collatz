@@ -22,6 +22,7 @@ This code requires:
 * The Spectra library for large scale eigenvalue problems, available here: https://spectralib.org/
 
 If you are using a Ubuntu based system you should be able to install all dependencies with apt:
+
 $ sudo apt install libeigen3-dev libspectra-dev libgmp-dev
 
 # Building
