@@ -26,7 +26,7 @@
 #include <Spectra/GenEigsSolver.h>
 #include <Spectra/MatOp/SparseGenMatProd.h>
 
-constexpr size_t NUM_BINS = 10000;
+constexpr size_t NUM_BINS = 5000;
 
 void ulam(size_t num_values, size_t num_bits, Eigen::SparseMatrix<double>* P) {
   mpz_t n, nu, two, tmp;
