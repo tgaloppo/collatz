@@ -107,7 +107,6 @@ int main(int argc, char** argv) {
     std::vector<Eigen::SparseMatrix<double>> P(ncpu);
     for (size_t j = 0; j < ncpu; j++) {
         P[j].resize(NUM_BINS, NUM_BINS);
-        P[j].setIdentity();
     }
 
     size_t n_per_thread = num_values / ncpu;
@@ -128,8 +127,11 @@ int main(int argc, char** argv) {
     }
 
     // Normalize rows of matrix
-    for (size_t j = 0; j < NUM_BINS; j++)
-      P[0].row(j) /= P[0].row(j).sum();
+    for (size_t j = 0; j < NUM_BINS; j++) {
+      double sum = P[0].row(j).sum();
+      if (sum > 0.0) 
+        P[0].row(j) /= sum;
+    }
 
     std::cerr << "Computing Spectral Gap @ " << num_bits << " bits" << std::endl;
 
