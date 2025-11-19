@@ -1,4 +1,4 @@
-# plots the fractional positions of itereates
+# plots the fractional positions of iterates
 # as computed with "fractional-position.cpp"
 # and overlays Benford distribution
 #
@@ -9,7 +9,7 @@ library(dplyr)
 
 dbenford <- function(a) 1 / (a * log(2))
 
-fp <- read.csv("fracpos.csv")
+fp <- read.csv("fractional-position.csv")
 
 plt <- fp %>% mutate(nbits=factor(nbits)) %>% 
   ggplot(aes(x=alpha)) + 
@@ -17,4 +17,4 @@ plt <- fp %>% mutate(nbits=factor(nbits)) %>%
     stat_function(fun=dbenford, color="red", linewidth=0.5) + 
     facet_wrap(~ nbits)
 
-print(plt)
+ggsave("benford-dist.eps", plot = plt)

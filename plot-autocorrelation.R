@@ -1,12 +1,12 @@
 # plots the autocorrelation data produced by
 # "correlation.cpp"
 #
-# $ ./correlation > acorr.csv
+# $ ./correlation > autocorrelation.csv
 #
 library(ggplot2)
 library(dplyr)
 
-ac <- read.csv("acorr.csv")
+ac <- read.csv("autocorrelation.csv")
 
 plt <- ac %>% 
   mutate(nbits=factor(nbits)) %>% 
@@ -21,4 +21,4 @@ plt <- ac %>%
     scale_y_continuous(limits=c(-2,2)) + 
     facet_wrap(~nbits, scale="free_x")
 
-print(plt)
+ggsave("autocorrelation.eps", plot = plt)

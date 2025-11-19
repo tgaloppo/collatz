@@ -11,7 +11,7 @@ and
 
 Preprint is available here: https://zenodo.org/records/17552420
 
-This code reproduces all numerical results presented in the papers.
+This repository contains the C++ simulation code and R plotting scripts supporting the research papers regarding the Stochastic Stability of the Collatz Conjecture. It implements a bitwise map simulation and statistical analyses of bit-span dynamics, and a Ulam Method estimatation of the transfer operator's spectral gap.
 
 # Requirements
 
@@ -19,21 +19,43 @@ This code requires:
 
 * The GNU MP BigNum library (GMP), available here: https://gmplib.org/
 * The Eigen3 library for linear algebra, available here: https://eigen.tuxfamily.org
+* The Spectra library for large scale eigenvalue problems, available here: https://spectralib.org/
+
+If you are using a Ubuntu based system you should be able to install all dependencies with apt:
+$ sudo apt install libeigen3-dev libspectra-dev libgmp-dev
 
 # Building
 
-## Typical
+The supplied Makefile should build everything for you:
 
-$ g++ -o collatz collatz.cpp -lgmp -O3
-
-## If your Eigen headers are not in standard place:
-
-$ g++ -o collatz collatz.cpp -lgmp -O3 -I /path/to/eigen3
+$ make
 
 # Running
 
-The executable can accept the number of random starting values and the maximum starting value size, in bits:
+## Main program
+
+The primary executable that computes the bit-span metrics can accept the number of random starting values and the maximum starting value size, in bits:
 
 **collatz** [num values] [num bits]
 
 The defaults are "num values" = 1000000 and "num bits" = 128.
+
+## Recreating the plots
+
+If you want to recreate the plots from the papers, or to generate the data for your own exploration, use
+
+$ make generate-plots
+
+or
+
+$ make generate-data
+
+respectively.
+
+Generated plots include:
+* benford-dist.eps - Plots the distribution of the fractional position of iterates (Paper 2, Figure 2)
+  * The data for this plot is **fractional-position.csv**
+* autocorrelation.eps - Plot the autocorrelation of the fractional positions over sequence lags (Paper 2, Figure 3)
+  * The data for this plot is **autocorrelation.csv**
+* spectral-gap.eps - Log-log plot of the spectral gap vs input bit size (Supplement, Figure 1)
+  * The data for this plot is **ulam-gap-out.csv**
