@@ -11,7 +11,7 @@ and
 
 Preprint is available here: https://zenodo.org/records/17552420
 
-This repository contains the simulation code and scripts supporting research papers regarding the Stochastic Stability of the Collatz Conjecture. It implements a bitwise map simulation and statistical analyses of bit-span dynamics, and a Ulam Method estimatation of the transfer operator's spectral gap.
+This repository contains code and scripts to reproduce results in the above research papers regarding the Stochastic Stability of the Collatz Conjecture. It implements a bitwise map simulation and statistical analyses of bit-span dynamics, and a Ulam Method estimatation of the transfer operator's spectral gap.
 
 # Requirements
 
