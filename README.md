@@ -51,7 +51,7 @@ or
 
 $ make generate-data
 
-respectively. Expect it to take about 20 minutes.
+respectively. Expect it to take about 20 minutes. Note that plot generation requires R with ggplot2 and dplyr packages.
 
 Generated plots include:
 * **benford-dist.eps** - Plots the distribution of the fractional position of iterates (Paper 2, Figure 2)
