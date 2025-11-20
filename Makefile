@@ -6,7 +6,7 @@ EIGEN_PATH = /usr/include/eigen3
 CXXFLAGS += -I$(EIGEN_PATH)
 
 # Targets
-all: collatz ulam-gap correlation fractional-position
+all: collatz ulam-gap correlation fractional-position delta-L-freq
 
 # Main Simulation (Paper 1 & 2)
 collatz: collatz.cpp
@@ -24,8 +24,12 @@ correlation: correlation.cpp
 ulam-gap: ulam-gap.cpp
 	$(CXX) $(CXXFLAGS) -o ulam-gap ulam-gap.cpp $(LDFLAGS)
 
+# Frequency table for LSB shift (Delta L)
+delta-L-freq: delta-L-freq.cpp
+	$(CXX) $(CXXFLAGS) -o delta-L-freq delta-L-freq.cpp $(LDFLAGS)
+
 clean:
-	rm -f collatz ulam-gap correlation fractional-position
+	rm -f collatz ulam-gap correlation fractional-position delta-L-freq
 
 ulam-gap-out.csv: ulam-gap
 	./ulam-gap > ulam-gap-out.csv
@@ -35,6 +39,9 @@ autocorrelation.csv: correlation
 
 fractional-position.csv: fractional-position
 	./fractional-position > fractional-position.csv
+
+delta-L-freq.csv: delta-L-freq
+	./delta-L-freq > delta-L-freq.csv
 
 # This will take while
 generate-data: fractional-position.csv autocorrelation.csv ulam-gap.csv
@@ -49,7 +56,10 @@ benford-dist.eps: fractional-position.csv
 spectral-gap.eps: ulam-gap-out.csv
 	Rscript plot-spectral-gap.R
 
-generate-plots: autocorrelation.eps benford-dist.eps spectral-gap.eps
+delta-L-freq.eps: delta-L-freq.csv
+	Rscript plot-lsb-shift-dist.R
+
+generate-plots: autocorrelation.eps benford-dist.eps spectral-gap.eps delta-L-freq.eps
 	echo "Plots: Done."
 
 clean-data:

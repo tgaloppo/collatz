@@ -54,9 +54,11 @@ $ make generate-data
 respectively.
 
 Generated plots include:
-* benford-dist.eps - Plots the distribution of the fractional position of iterates (Paper 2, Figure 2)
+* **benford-dist.eps** - Plots the distribution of the fractional position of iterates (Paper 2, Figure 2)
   * The data for this plot is **fractional-position.csv**
-* autocorrelation.eps - Plot the autocorrelation of the fractional positions over sequence lags (Paper 2, Figure 3)
+* **autocorrelation.eps** - Plot the autocorrelation of the fractional positions over sequence lags (Paper 2, Figure 3)
   * The data for this plot is **autocorrelation.csv**
-* spectral-gap.eps - Log-log plot of the spectral gap vs input bit size (Supplement, Figure 1)
+* **spectral-gap.eps** - Log-log plot of the spectral gap vs input bit size (Supplement, Figure 1)
   * The data for this plot is **ulam-gap-out.csv**
+* **delta-L-freq.eps** - Semi-log plot of LSB shift distribution (Supplement, Figure 2)
+  * The data for this plot is **delta-L-freq.csv**
