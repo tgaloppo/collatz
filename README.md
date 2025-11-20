@@ -51,7 +51,7 @@ or
 
 $ make generate-data
 
-respectively.
+respectively. Expect it to take about 20 minutes.
 
 Generated plots include:
 * **benford-dist.eps** - Plots the distribution of the fractional position of iterates (Paper 2, Figure 2)
