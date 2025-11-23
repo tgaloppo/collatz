@@ -3,13 +3,13 @@ Companion code to:
 
 "Negative Drift and State Instability in a Bitwise System Equivalent to the Collatz Conjecture"
 
-Preprint is available here: https://zenodo.org/records/17407873
+Preprint is available here: https://doi.org/10.5281/zenodo.17407872
 
 and
 
 "Deterministic Limits and Ergodic Properties of a Bitwise Syracuse Map"
 
-Preprint is available here: https://zenodo.org/records/17552420
+Preprint is available here: https://doi.org/10.5281/zenodo.17544884
 
 This repository contains code and scripts to reproduce results in the above research papers regarding the Stochastic Stability of the Collatz Conjecture. It implements a bitwise map simulation and statistical analyses of bit-span dynamics, and a Ulam Method estimatation of the transfer operator's spectral gap.
 
