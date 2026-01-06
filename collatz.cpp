@@ -184,6 +184,7 @@ int main(int argc, char** argv) {
             << std::endl;
 
   mpz_clears(n, nu, two, tmp, NULL);
+  gmp_randclear(rnd_state);
 
   // Convert LSB transition counts to probabilities
   // (normalize rows to sum to 1)
