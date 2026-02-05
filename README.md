@@ -1,3 +1,9 @@
+# Deprecated
+
+This repository, and the related research works, have been superceded by a new manuscript:
+
+[The Collatz Conjecture is a Two Bit Problem][3]
+
 # Description
 Companion code to: 
 
@@ -86,3 +92,4 @@ Generated plots include:
 
 [1]: https://doi.org/10.5281/zenodo.17407872
 [2]: https://doi.org/10.5281/zenodo.17544884
+[3]: https://doi.org/10.5281/zenodo.18462108
